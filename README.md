@@ -330,7 +330,7 @@ Contributions, issues, and feature requests are welcome!
 
 ## 📞 Support
 
-For support, email your-email@example.com or open an issue in the repository.
+For support, email arunjith.5452@gmail.com or open an issue in the repository.
 
 ---
 
