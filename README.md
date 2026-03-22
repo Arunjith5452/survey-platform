@@ -28,7 +28,6 @@ A full-stack web application built with the MERN stack (MongoDB, Express.js, Rea
 ### Security & Anti-Spam
 - **JWT Authentication**: Stateless authentication for admin routes
 - **Password Hashing**: Bcrypt for secure password storage
-- **Honeypot Field**: Hidden field to catch bots
 - **Input Validation**: Comprehensive server-side validation
 - **CORS Protection**: Configured cross-origin resource sharing
 
@@ -134,7 +133,7 @@ Create a `.env` file in the backend directory:
 ```env
 NODE_ENV=development
 MONGODB_URI=mongodb://localhost:27017/survey-form
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_SECRET=your-super-secret-jwt-key
 JWT_EXPIRES_IN=24h
 PORT=5000
 CORS_ORIGIN=http://localhost:5173
@@ -186,14 +185,6 @@ The application will be available at `http://localhost:5173`
 | POST | `/api/auth/login` | Admin login | No |
 | GET | `/api/auth/me` | Get current admin | Yes |
 
-## 🔐 Default Admin Credentials
-
-```
-Username: admin
-Password: admin123
-```
-
-**⚠️ IMPORTANT**: Change these credentials immediately in production!
 
 ## 🌐 Deployment
 
@@ -264,29 +255,6 @@ This application uses [shadcn/ui](https://ui.shadcn.com) components built with R
 - Input
 - Label
 - Toast notifications
-
-## 📝 Design Decisions
-
-### Why TypeScript?
-- Type safety across the entire stack
-- Better IDE support and autocompletion
-- Catches errors at compile time
-
-### Why shadcn/ui?
-- Fully customizable components
-- Copy-paste components (no npm dependencies for components)
-- Built on Radix UI for accessibility
-- Tailwind CSS for styling
-
-### Why MongoDB?
-- Flexible schema for survey data
-- Easy to scale
-- JSON-like documents match our API structure
-
-### JWT vs Session Authentication?
-- Stateless authentication
-- Better for scalability
-- No server-side session storage needed
 
 ## 🔒 Security Considerations
 
