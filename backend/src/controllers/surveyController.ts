@@ -1,16 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
 import { container, TYPES } from '../inversify/index.js';
 import type { SurveyService } from '../services/SurveyService.js';
-import { AuthRequest } from '../middleware/authMiddleware.js';
 import { HttpStatus } from '../constants/HttpStatus.js';
 
 const surveyService = container.get<SurveyService>(TYPES.SurveyService);
 
 
 
+
+import { CreateSurveySubmissionDto } from '../dtos/survey.dto.js';
+
 export const submitSurvey = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { name, gender, nationality, email, phone, address, message } = req.body;
+    const surveyData = CreateSurveySubmissionDto.validate(req.body);
 
     if (req.body.website) {
       res.status(HttpStatus.OK).json({ 
@@ -20,15 +22,7 @@ export const submitSurvey = async (req: Request, res: Response, next: NextFuncti
       return;
     }
 
-    const surveySubmission = await surveyService.submitSurvey({
-      name,
-      gender,
-      nationality,
-      email,
-      phone,
-      address,
-      message,
-    });
+    const surveySubmission = await surveyService.submitSurvey(surveyData);
 
     res.status(HttpStatus.CREATED).json({
       success: true,
@@ -42,7 +36,7 @@ export const submitSurvey = async (req: Request, res: Response, next: NextFuncti
 
 
 
-export const getAllSubmissions = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+export const getAllSubmissions = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
    const page = parseInt(req.query.page as string) || 1;
   const limit = parseInt(req.query.limit as string) || 10;
@@ -63,7 +57,7 @@ export const getAllSubmissions = async (req: AuthRequest, res: Response, next: N
 
 
 
-export const getSubmissionById = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+export const getSubmissionById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
  const id = req.params.id as string;
  
@@ -89,7 +83,7 @@ export const getSubmissionById = async (req: AuthRequest, res: Response, next: N
 
 
 
-export const deleteSubmission = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+export const deleteSubmission = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
    const id = req.params.id as string;
       
