@@ -62,7 +62,6 @@ const SurveySubmissionSchema: Schema = new Schema(
   }
 );
 
-// Index for efficient querying
 SurveySubmissionSchema.index({ createdAt: -1 });
 SurveySubmissionSchema.index({ email: 1 });
 
