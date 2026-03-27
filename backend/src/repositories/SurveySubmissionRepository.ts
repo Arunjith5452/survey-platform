@@ -1,10 +1,10 @@
 import'mongoose';
 import { injectable } from'inversify';
 import SurveySubmission, { ISurveySubmission } from '../models/SurveySubmission.js';
-import { IRepository } from './IRepository.js';
+import { ISurveySubmissionRepository } from './ISurveySubmissionRepository.js';
 
 @injectable()
-export class SurveySubmissionRepository implements IRepository<ISurveySubmission> {
+export class SurveySubmissionRepository implements ISurveySubmissionRepository {
   async findById(id: string): Promise<ISurveySubmission | null> {
    return await SurveySubmission.findById(id).exec();
   }
