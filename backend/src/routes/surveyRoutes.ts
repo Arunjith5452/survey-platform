@@ -5,20 +5,15 @@ import {
   getSubmissionById,
   deleteSubmission,
 } from '../controllers/surveyController.js';
-import { authenticateToken } from '../middleware/authMiddleware.js';
 
 const router = Router();
 
-// Public route - Submit survey
 router.post('/', submitSurvey);
 
-// Protected routes - Get all submissions
-router.get('/', authenticateToken, getAllSubmissions);
+router.get('/', getAllSubmissions);
 
-// Protected routes - Get single submission
-router.get('/:id', authenticateToken, getSubmissionById);
+router.get('/:id', getSubmissionById);
 
-// Protected routes - Delete submission
-router.delete('/:id', authenticateToken, deleteSubmission);
+router.delete('/:id', deleteSubmission);
 
 export default router;

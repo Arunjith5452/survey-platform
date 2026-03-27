@@ -1,10 +1,10 @@
 import'mongoose';
 import { injectable } from'inversify';
 import Admin, { IAdmin } from '../models/Admin.js';
-import { IRepository } from './IRepository.js';
+import { IAdminRepository } from './IAdminRepository.js';
 
 @injectable()
-export class AdminRepository implements IRepository<IAdmin> {
+export class AdminRepository implements IAdminRepository {
   async findById(id: string): Promise<IAdmin | null> {
   return await Admin.findById(id).exec();
   }

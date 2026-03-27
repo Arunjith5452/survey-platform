@@ -39,7 +39,5 @@ export interface LoginCredentials {
 }
 
 export interface LoginResponse {
-  token: string;
   username: string;
- expiresIn: string;
 }
