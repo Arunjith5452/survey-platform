@@ -9,7 +9,7 @@ export function AdminHeader({ title = "Admin Dashboard" }: AdminHeaderProps) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('isLoggedIn');
     navigate('/admin/login');
   };
 

@@ -29,8 +29,8 @@ export function AdminLogin() {
     try {
       const response = await authApi.login(credentials);
       
-      if (response.data && response.data.token) {
-        localStorage.setItem('authToken', response.data.token);
+      if (response.data) {
+        localStorage.setItem('isLoggedIn', 'true');
         
         toast({
           title: 'Login Successful',
