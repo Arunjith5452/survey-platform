@@ -23,8 +23,8 @@ export const protectAdmin = (req: Request, res: Response, next: NextFunction): v
         process.env.JWT_SECRET || 'secret'
       );
 
-      const jwtDecoded = decoded as { username: string, role: string, iat?: number, exp?: number };
-      
+      const jwtDecoded = decoded as { username: string, role: string };
+
       if (jwtDecoded.role !== 'admin') {
         res.status(HttpStatus.FORBIDDEN).json({
           success: false,
