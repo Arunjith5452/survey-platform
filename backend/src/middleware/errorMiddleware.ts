@@ -53,7 +53,6 @@ export const globalErrorHandler = (
   res.status(status).json({
     success: false,
     message,
-    // Note: It's best practice not to expose stack traces in production
     stack: process.env.NODE_ENV === 'production' ? undefined : error.stack,
   });
 };

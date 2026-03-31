@@ -10,6 +10,7 @@ export function AdminHeader({ title = "Admin Dashboard" }: AdminHeaderProps) {
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('accessToken');
     navigate('/admin/login');
   };
 

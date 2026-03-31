@@ -8,24 +8,22 @@ import { CreateSurveySubmissionDto } from '../dtos/survey.dto.js';
 
 @injectable()
 export class SurveyService {
-  private _surveyRepo: ISurveySubmissionRepository;
+  private _surveyRepo: ISurveySubmissionRepository
 
   constructor(@inject(TYPES.SurveySubmissionRepository) surveyRepo: ISurveySubmissionRepository) {
-    this._surveyRepo = surveyRepo;
+    this._surveyRepo = surveyRepo
   }
 
   async submitSurvey(data: CreateSurveySubmissionDto): Promise<ISurveySubmission> {
-    return await this._surveyRepo.create(data);
+    return await this._surveyRepo.create(data)
   }
 
-  async getAllSubmissions(
-    page: number,
-    limit: number
-  ): Promise<PaginatedResult<ISurveySubmission>> {
+  async getAllSubmissions(page: number,limit: number): Promise<PaginatedResult<ISurveySubmission>> {
+
     const [submissions, total] = await Promise.all([
       this._surveyRepo.findByPage(page, limit),
       this._surveyRepo.count(),
-    ]);
+    ])
 
     return {
       data: submissions,
@@ -35,14 +33,14 @@ export class SurveyService {
         totalItems: total,
         limit,
       },
-    };
+    }
   }
 
   async getSubmissionById(id: string): Promise<ISurveySubmission | null> {
-    return await this._surveyRepo.findById(id);
+    return await this._surveyRepo.findById(id)
   }
 
   async deleteSubmission(id: string): Promise<boolean> {
-    return await this._surveyRepo.delete(id);
+    return await this._surveyRepo.delete(id)
   }
 }

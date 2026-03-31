@@ -31,6 +31,7 @@ export function AdminLogin() {
       
       if (response.data) {
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('accessToken', response.data.accessToken);
         
         toast({
           title: 'Login Successful',
