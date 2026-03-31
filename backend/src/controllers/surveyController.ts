@@ -13,14 +13,6 @@ export const submitSurvey = async (req: Request, res: Response, next: NextFuncti
   try {
     const surveyData = CreateSurveySubmissionDto.validate(req.body);
 
-    if (req.body.website) {
-      res.status(HttpStatus.OK).json({ 
-        success: true, 
-        message: 'Thank you for your submission!' 
-      });
-      return;
-    }
-
     const surveySubmission = await surveyService.submitSurvey(surveyData);
 
     res.status(HttpStatus.CREATED).json({
