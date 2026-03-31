@@ -7,7 +7,6 @@ const surveyService = container.get<SurveyService>(TYPES.SurveyService);
 
 
 
-
 import { CreateSurveySubmissionDto } from '../dtos/survey.dto.js';
 
 export const submitSurvey = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -29,6 +28,7 @@ export const submitSurvey = async (req: Request, res: Response, next: NextFuncti
       message: 'Thank you! Your survey has been submitted successfully.',
       data: surveySubmission,
     });
+
   } catch (error) {
     next(error);
   }
@@ -54,7 +54,6 @@ export const getAllSubmissions = async (req: Request, res: Response, next: NextF
   next(error);
  }
 };
-
 
 
 export const getSubmissionById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

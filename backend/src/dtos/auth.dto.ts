@@ -16,4 +16,5 @@ export class LoginDto {
 
 export interface AdminDto {
   username: string;
+  accessToken: string;
 }

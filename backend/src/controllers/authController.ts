@@ -21,6 +21,7 @@ export const loginAdmin = async (req: Request, res: Response): Promise<void> => 
       message: 'Login successful',
       data: result,
     });
+    
   } catch (error: unknown) {
     console.error('Error logging in admin:', error);
     res.status(HttpStatus.UNAUTHORIZED).json({

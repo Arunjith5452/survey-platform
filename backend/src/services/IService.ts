@@ -5,12 +5,6 @@ export interface ISurveyService {
   deleteSubmission(id: string): Promise<boolean>;
 }
 
-export interface IAuthService {
-  registerAdmin(username: string, password: string): Promise<void>;
-  loginAdmin(username: string, password: string): Promise<LoginResult>;
-  getCurrentAdmin(adminId: string): Promise<AdminInfo | null>;
-}
-
 export interface SurveyData {
   name: string;
   gender: 'Male' | 'Female' | 'Other' | 'Prefer not to say';
