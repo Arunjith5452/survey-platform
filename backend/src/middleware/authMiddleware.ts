@@ -23,7 +23,20 @@ export const protectAdmin = (req: Request, res: Response, next: NextFunction): v
         process.env.JWT_SECRET || 'secret'
       );
 
-      req.user = decoded as { username: string, role: string }
+      const jwtDecoded = decoded as { username: string, role: string, iat?: number, exp?: number };
+      
+      if (jwtDecoded.role !== 'admin') {
+        res.status(HttpStatus.FORBIDDEN).json({
+          success: false,
+          message: 'Not authorized as an admin',
+        });
+        return;
+      }
+
+      req.user = {
+        username: jwtDecoded.username,
+        role: jwtDecoded.role
+      };
 
       return next();
     } catch (error) {
